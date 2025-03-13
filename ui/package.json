@@ -1,0 +1,40 @@
+{
+  "name": "todoshnik",
+  "version": "0.0.1",
+  "description": "Templates for Litestar App",
+  "license": "ISC",
+  "author": "Raidzin",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tailwindcss -i src/assets/main-raw.css -o src/assets/main.css --watch",
+    "build": "tailwindcss -i src/assets/main-raw.css -o src/assets/main.css --minify --optimize",
+    "lint": "prettier . --check",
+    "format": "prettier . --write"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.0.13",
+    "@tailwindcss/cli": "^4.0.13"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-jinja-template": "^2.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.11"
+  },
+  "prettier": {
+    "endOfLine": "auto",
+    "plugins": [
+      "prettier-plugin-jinja-template",
+      "prettier-plugin-tailwindcss"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.html"
+        ],
+        "options": {
+          "parser": "jinja-template"
+        }
+      }
+    ]
+  }
+}

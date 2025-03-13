@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Monomakh&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* https://coolors.co/758c94-080703-e7a648-324331-e4e5e7 */
+  --slate-gray: #758c94ff;
+  --smoky-black: #080703ff;
+  --hunyadi-yellow: #e7a648ff;
+  --brunswick-green: #324331ff;
+  --platinum: #e4e5e7ff;
+
+  --font-monomakh: "Monomakh", system-ui;
+  --color-default: var(--slate-gray);
+  --color-primary: var(--hunyadi-yellow);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary rounded-xl p-2 text-white uppercase shadow-md duration-300 hover:shadow-lg hover:brightness-85;
+  }
+}
