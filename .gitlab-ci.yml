@@ -1,0 +1,59 @@
+variables:
+  UV_BASE_LAYER: bookworm-slim
+  UV_VERSION: 0.6
+  PYTHON_VERSION: 3.12
+  NODE_VERSION: 22
+
+default:
+  image: ghcr.io/astral-sh/uv:$UV_VERSION-python$PYTHON_VERSION-$UV_BASE_LAYER
+
+stages:
+  - analysis
+
+ruff-format:
+  stage: analysis
+  script:
+    - uv sync
+    - uv run ruff format --check
+
+ruff:
+  stage: analysis
+  script:
+    - uv sync
+    - uv run ruff check --output-format gitlab > code-quality-report.json
+  artifacts:
+    reports:
+      codequality: $CI_PROJECT_DIR/code-quality-report.json
+
+wps:
+  stage: analysis
+  script:
+    - uv sync
+    - uv run flake8 todoshnik
+
+mypy:
+  stage: analysis
+  script:
+    - uv sync
+    - uv run mypy --junit-xml mypy-junit.xml --cobertura-xml-report mypy-coverage
+  artifacts:
+    reports:
+      junit:
+        - mypy-junit.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: mypy-coverage/cobertura.xml
+
+pip-audit:
+  stage: analysis
+  script:
+    - uv sync
+    - uv run pip-audit
+
+prettier:
+  stage: analysis
+  image: node:$NODE_VERSION
+  script:
+    - cd ui
+    - npm install
+    - npm run lint

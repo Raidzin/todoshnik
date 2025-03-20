@@ -1,0 +1,11 @@
+{
+  "cSpell.words": [
+    "beforeend",
+    "hyperscript",
+    "pytz",
+    "tailwindcss",
+    "todoshnik"
+  ],
+  "python.analysis.typeCheckingMode": "off",
+  "python.defaultInterpreterPath": ".venv/Scripts/python",
+}

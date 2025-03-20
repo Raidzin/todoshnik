@@ -1,0 +1,5 @@
+[flake8]
+select = WPS
+allowed-domain-names = data
+per-file-ignores =
+  todoshnik/__init__.py: WPS412

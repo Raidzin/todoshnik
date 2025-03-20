@@ -4,14 +4,17 @@ version = "0.1.0"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "granian>=2.0.1",
-    "litestar[pydantic,sqlalchemy,standard]>=2.15.1",
+    "aiosqlite>=0.21.0",
+    "litestar[sqlalchemy,standard]>=2.15.1",
+    "pytz>=2025.1",
 ]
 
 [dependency-groups]
 dev = [
-    "mypy>=1.15.0",
+    "mypy[reports]>=1.15.0",
+    "pip-audit>=2.8.0",
     "ruff>=0.9.10",
+    "types-pytz>=2025.1.0.20250204",
     "wemake-python-styleguide>=1.0.0",
 ]
 
@@ -54,6 +57,7 @@ select = [
 ]
 ignore = [
     "COM812", # ruff formatter warn on it
+    "RUF029", # sometimes incorrect
 ]
 preview = true
 
@@ -72,7 +76,3 @@ strict = true
 strict_bytes = true
 local_partial_types = true
 warn_unreachable = true
-plugins = [
-    "pydantic.mypy",
-    "sqlalchemy.ext.mypy.plugin",
-]

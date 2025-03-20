@@ -2,12 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Списокъ работъ</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="icon" href="/favicon.svg" />
     <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/animations.css" />
+    <script
+      src="https://unpkg.com/htmx.org@{{ htmx_version }}"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/hyperscript.org@{{ hyperscript_version }}"
+      crossorigin="anonymous"
+    ></script>
+    <title>Тудушникъ</title>
   </head>
-  <body class="font-monomakh bg-default">
+  <body>
     {% include 'components/header.html' %}
-    {% block page required %}
-    {% endblock %}
+    <main class="m-2 max-w-(--breakpoint-lg) xl:mx-auto">
+      {% block page required %}
+      {% endblock %}
+    </main>
+
+    <div
+      class="bg-dark fixed inset-x-0 bottom-2 mx-2 box-border flex h-fit justify-center rounded-xl border p-2 xl:top-1/2 xl:right-10 xl:w-fit"
+      _="init if not (my innerHTML).trim() remove me"
+    >
+      {% block tools %}
+      {% endblock %}
+    </div>
+
+    {% if request.app.debug %}
+      <script src="/hdb.js" crossorigin="anonymous"></script>
+    {% endif %}
+    <meta
+      name="htmx-config"
+      content='{
+            "responseHandling":[
+                {"code":"[2]..", "swap": true}
+            ]
+        }'
+    />
   </body>
 </html>

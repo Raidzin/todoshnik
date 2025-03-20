@@ -1,3 +1,24 @@
-<div class="bg-teal-500">
-  <div class="text-xl">Тудушникъ</div>
-</div>
+{%- macro nav_btn(name) %}
+  <a
+    class="btn-flat text-white underline-offset-2 duration-300"
+    href="{{ url_for(name) }}"
+    _="init 
+         if '{{ request.route_handler.name }}' is '{{ name }}' add .underline to me 
+         then add .{'hover:bg-transparent'} to me
+         then add .{'cursor-default'} to me
+      "
+    >{{ name }}</a
+  >
+{% endmacro -%}
+
+<header class="flex w-full flex-row justify-center p-2">
+  <nav
+    class="bg-primary box-border flex w-full max-w-(--breakpoint-xl) flex-row items-center justify-between rounded-xl p-2 text-white shadow-md shadow-black"
+  >
+    <div class="text-3xl">Тудушникъ</div>
+    <div class="flex flex-row gap-1" hx-boost="true">
+      {{ nav_btn('Задачи') }}
+      {{ nav_btn('Выполнено') }}
+    </div>
+  </nav>
+</header>

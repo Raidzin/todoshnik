@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% import 'components/task_item.html' as task_item %}
+
+{% block tools %}
+  <button class="btn" hx-trigger="click" hx-get="/task/create_dialog">
+    Создать
+  </button>
+{% endblock %}
+
+{% block page %}
+  <div id="task-list" class="flex flex-col gap-2">
+    {% for task in tasks %}
+      {{ task_item.task_item(task) }}
+    {% endfor %}
+  </div>
+{% endblock %}
+<title>Задачи</title>
