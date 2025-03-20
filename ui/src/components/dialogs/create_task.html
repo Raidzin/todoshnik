@@ -1,0 +1,30 @@
+{% extends 'components/dialogs/base.html' %}
+
+{% block title %}
+  Создать Задачу
+{% endblock %}
+
+{% block content %}
+  <form class="flex flex-col">
+    <label for="name">Задача</label>
+    <input id="name" type="text" name="name" autocomplete="off" class="input" />
+    <label for="description">Разъяснение</label>
+    <textarea
+      id="description"
+      type="text"
+      name="description"
+      autocomplete="off"
+      class="input"
+    ></textarea>
+    <button
+      type="submit"
+      class="btn mt-2"
+      hx-post="/task"
+      hx-target="#task-list"
+      hx-swap="beforeend"
+      _="on click wait for htmx:afterRequest(successful) then if successful trigger closeModal"
+    >
+      сохранить
+    </button>
+  </form>
+{% endblock %}

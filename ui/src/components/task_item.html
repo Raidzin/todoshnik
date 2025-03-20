@@ -1,0 +1,51 @@
+{%- macro task_item(task) %}
+  <div
+    id="task-{{ task.id }}"
+    class="a-fade a-fade-out bg-light dark:bg-dark flex flex-row items-center justify-between rounded-xl border p-2"
+    _="on mutation(type) log type"
+  >
+    <div>
+      <div class="col-auto text-xl">{{ task.name }}</div>
+      {% if task.description %}
+        <div
+          class="text-light text-md col-auto brightness-75 before:content-['•']"
+        >
+          {{ task.description }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="flex flex-row items-center">
+      <div class="flex flex-col items-end">
+        <div class="col-auto text-xl">{{ task.creation_date | time }}</div>
+        <div class="text-md col-auto">{{ task.creation_date | date }}</div>
+      </div>
+      <div class="ml-2 flex flex-col justify-center">
+        {% if task.is_done %}
+          <button
+            class="btn bg-red-500"
+            hx-delete="/task/{{ task.id }}"
+            hx-target="#task-{{ task.id }}"
+            hx-swap="delete"
+            hx-confirm="Удалить задачу {{ task.name }} ?"
+          >
+            Удолить
+          </button>
+        {% else %}
+          <button
+            class="btn"
+            hx-patch="/task/{{ task.id }}"
+            hx-target="#task-{{ task.id }}"
+            hx-swap="delete"
+            hx-confirm="Выполнить задачу {{ task.name }} ?"
+          >
+            Готово
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endmacro -%}
+
+{% if task %}
+  {{ task_item(task) }}
+{% endif %}

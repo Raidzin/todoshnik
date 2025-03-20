@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Monomakh&family=Ponomar&display=swap");
+@import "tailwindcss";
+
+:root {
+  font-size: 20px;
+  scrollbar-width: none;
+  @apply bg-light font-monomakh cursor-default text-black duration-300;
+  @apply dark:bg-dark dark:text-white;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+}
+
+@theme {
+  /* set default font */
+  --font-monomakh: "Ponomar", system-ui;
+
+  /* custom colors */
+  /* https://coolors.co/e0fbfc-042425-3d5a80-98c1d9-ee6c4d-293241 */
+  --color-light: #e0fbfc;
+  --color-dark: #042425;
+  --color-primary: #3d5a80;
+  --color-secondary: #98c1d9;
+  --color-accent: #293241;
+  --color-action: #ee6c4d;
+}
+
+@layer utilities {
+  .border {
+    @apply border-primary border-1 duration-500 hover:border-black;
+    @apply dark:border-primary dark:hover:border-secondary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-action cursor-pointer rounded-xl p-2 text-base text-white uppercase shadow-xs shadow-black duration-300;
+    @apply hover:bg-accent hover:shadow-md;
+  }
+  .btn-flat {
+    @apply text-action cursor-pointer rounded-xl bg-transparent p-2 text-base uppercase duration-300;
+    @apply hover:bg-black/10;
+  }
+  .input {
+    @apply bg-light border-primary rounded-xl border-1 p-2 text-base text-black shadow-none shadow-black duration-300 focus:border-black focus:shadow-sm;
+    @apply dark:bg-dark dark:border-primary dark:focus:border-secondary dark:text-white;
+    @apply hover:shadow-sm;
+  }
+  textarea {
+    resize: none;
+  }
+}

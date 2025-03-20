@@ -1,0 +1,11 @@
+{% extends 'index.html' %}
+{% import 'components/task_item.html' as task_item %}
+
+{% block page %}
+  <div id="task-list" class="flex flex-col gap-2">
+    {% for task in tasks %}
+      {{ task_item.task_item(task) }}
+    {% endfor %}
+  </div>
+{% endblock %}
+<title>Выполненые Задачи</title>

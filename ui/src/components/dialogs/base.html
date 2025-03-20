@@ -1,0 +1,49 @@
+<div
+  id="modal"
+  class="fixed top-0 right-0 bottom-0 left-0 z-50 flex flex-col items-center bg-black/50 backdrop-blur-md"
+  _="on closeModal add .closing then wait for animationend then remove me"
+>
+  <div class="absolute top-0 right-0 bottom-0 left-0 -z-10"></div>
+  <div
+    class="modal-content bg-light dark:bg-dark mx-4 mt-[10vh] min-w-[30vw] rounded-xl p-4 shadow-xl shadow-black/50 dark:shadow-white/50"
+  >
+    <div class="flex w-full flex-row items-center justify-between">
+      <div class="self-start text-xl font-bold">
+        {% block title %}{% endblock %}
+      </div>
+      <button class="btn-flat" _="on click trigger closeModal">закрыть</button>
+    </div>
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+<style>
+  /***** MODAL DIALOG ****/
+  #modal {
+    /* Animate when opening */
+    animation-name: fadeIn;
+    animation-duration: 150ms;
+    animation-timing-function: ease;
+  }
+
+  #modal > .modal-content {
+    /* Animate when opening */
+    animation-name: zoomIn;
+    animation-duration: 150ms;
+    animation-timing-function: ease;
+  }
+
+  #modal.closing {
+    /* Animate when closing */
+    animation-name: fadeOut;
+    animation-duration: 150ms;
+    animation-timing-function: ease;
+  }
+
+  #modal.closing > .modal-content {
+    /* Animate when closing */
+    animation-name: zoomOut;
+    animation-duration: 150ms;
+    animation-timing-function: ease;
+  }
+</style>
