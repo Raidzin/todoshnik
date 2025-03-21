@@ -26,7 +26,6 @@ class PagesController(Controller):
     async def tasks_page(self, task_repository: TaskRepository) -> Template:
         tasks = await task_repository.list(
             models.Task.is_done == False,  # noqa: E712
-            uniquify=True,
         )
         return HTMXTemplate(
             template_name='pages/tasks.html', context={'tasks': tasks}
@@ -38,7 +37,6 @@ class PagesController(Controller):
     ) -> Template:
         tasks = await task_repository.list(
             models.Task.is_done == True,  # noqa: E712
-            uniquify=True,
         )
         return HTMXTemplate(
             template_name='pages/done_tasks.html', context={'tasks': tasks}

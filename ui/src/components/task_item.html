@@ -1,8 +1,7 @@
 {%- macro task_item(task) %}
   <div
     id="task-{{ task.id }}"
-    class="a-fade a-fade-out bg-light dark:bg-dark flex flex-row items-center justify-between rounded-xl border p-2"
-    _="on mutation(type) log type"
+    class="a-fade bg-light dark:bg-dark flex flex-row items-center justify-between rounded-xl border p-2 transition-all"
   >
     <div>
       <div class="col-auto text-xl">{{ task.name }}</div>
@@ -25,7 +24,7 @@
             class="btn bg-red-500"
             hx-delete="/task/{{ task.id }}"
             hx-target="#task-{{ task.id }}"
-            hx-swap="delete"
+            hx-swap="delete swap:500ms"
             hx-confirm="Удалить задачу {{ task.name }} ?"
           >
             Удолить
@@ -35,7 +34,7 @@
             class="btn"
             hx-patch="/task/{{ task.id }}"
             hx-target="#task-{{ task.id }}"
-            hx-swap="delete"
+            hx-swap="delete swap:500ms"
             hx-confirm="Выполнить задачу {{ task.name }} ?"
           >
             Готово

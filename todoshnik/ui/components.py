@@ -53,7 +53,7 @@ class TaskController(Controller):
         task_id: UUID,
         task_repository: TaskRepository,
     ) -> None:
-        task = await task_repository.get(item_id=task_id, uniquify=True)
+        task = await task_repository.get(item_id=task_id)
         task.is_done = True
         await task_repository.add(data=task, auto_commit=True)
 
@@ -63,4 +63,4 @@ class TaskController(Controller):
         task_id: UUID,
         task_repository: TaskRepository,
     ) -> None:
-        await task_repository.delete(item_id=task_id, uniquify=True)
+        await task_repository.delete(item_id=task_id)

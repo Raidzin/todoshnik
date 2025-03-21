@@ -4,7 +4,8 @@
     "hyperscript",
     "pytz",
     "tailwindcss",
-    "todoshnik"
+    "todoshnik",
+    "uniquify"
   ],
   "python.analysis.typeCheckingMode": "off",
   "python.defaultInterpreterPath": ".venv/Scripts/python",
