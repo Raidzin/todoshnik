@@ -1,14 +1,14 @@
 .a-fade {
   /* Animate when opening */
   animation-name: fadeIn;
-  animation-duration: 400ms;
+  animation-duration: 500ms;
   animation-timing-function: ease;
 }
 
-.a-fade.removing {
+.a-fade.htmx-swapping {
   /* Animate when opening */
   animation-name: fadeOut;
-  animation-duration: 400ms;
+  animation-duration: 500ms;
   animation-timing-function: ease;
 }
 

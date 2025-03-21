@@ -40,10 +40,13 @@
     <meta
       name="htmx-config"
       content='{
-            "responseHandling":[
-                {"code":"[2]..", "swap": true}
-            ]
-        }'
+        "responseHandling":[
+            {"code":"[23]..", "swap": true},
+            {"code":"4..", "swap": true, "error":true},
+            {"code":"5..", "swap": false, "error":true},
+            {"code":"...", "swap": false}
+        ]
+    }'
     />
   </body>
 </html>
