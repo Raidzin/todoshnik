@@ -2,17 +2,17 @@ from datetime import datetime
 
 import pytz
 
-ZONE_INFO = pytz.timezone('Europe/Moscow')
+MOSCOW_TIMEZONE = pytz.timezone('Europe/Moscow')
 TIME_FORMAT = '%H:%M'
 DATE_FORMAT = '%d.%m.%Y'
 
 
 def format_time(date: datetime) -> str:
-    return date.replace(tzinfo=ZONE_INFO).strftime(TIME_FORMAT)
+    return date.astimezone(tz=MOSCOW_TIMEZONE).strftime(TIME_FORMAT)
 
 
 def format_date(date: datetime) -> str:
-    return date.replace(tzinfo=ZONE_INFO).strftime(DATE_FORMAT)
+    return date.astimezone(tz=MOSCOW_TIMEZONE).strftime(DATE_FORMAT)
 
 
 templates_globals = {

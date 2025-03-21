@@ -5,7 +5,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "aiosqlite>=0.21.0",
-    "litestar[sqlalchemy,standard]>=2.15.1",
+    "litestar[sqlalchemy,structlog,standard]>=2.15.1",
     "pytz>=2025.1",
 ]
 

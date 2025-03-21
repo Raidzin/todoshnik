@@ -176,3 +176,6 @@ cython_debug/
 # UI
 node_modules/
 ui/src/assets/main.css
+
+# ttt
+ttt.py

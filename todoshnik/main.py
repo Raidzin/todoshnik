@@ -6,6 +6,7 @@ from litestar.static_files import create_static_files_router
 from litestar.template.config import TemplateConfig
 
 from todoshnik.database.plugin import sqlalchemy_plugin
+from todoshnik.logger import structlog_plugin
 from todoshnik.templates import template_filters, templates_globals
 from todoshnik.ui import components, pages
 
@@ -37,6 +38,9 @@ app = Litestar(
     template_config=TemplateConfig(
         engine=template_engine,
     ),
-    plugins=(sqlalchemy_plugin,),
+    plugins=(
+        sqlalchemy_plugin,
+        structlog_plugin,
+    ),
     openapi_config=None,
 )

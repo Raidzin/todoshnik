@@ -3,6 +3,7 @@
     "beforeend",
     "hyperscript",
     "pytz",
+    "Structlog",
     "tailwindcss",
     "todoshnik",
     "uniquify"
