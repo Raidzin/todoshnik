@@ -42,5 +42,5 @@ app = Litestar(
         sqlalchemy_plugin,
         structlog_plugin,
     ),
-    openapi_config=None,
+    # openapi_config=None,
 )

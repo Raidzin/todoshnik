@@ -21,7 +21,7 @@
       class="btn mt-2"
       hx-post="/task"
       hx-target="#task-list"
-      hx-swap="afterbegin"
+      hx-swap="beforeend"
       _="on click wait for htmx:afterRequest(successful) then if successful trigger closeModal"
     >
       сохранить
