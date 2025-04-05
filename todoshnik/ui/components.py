@@ -15,12 +15,13 @@ from litestar.enums import RequestEncodingType
 from litestar.params import Body
 from litestar_htmx import HTMXTemplate
 
-from todoshnik.database import dto, models
+from todoshnik import schemas
 from todoshnik.database.repository import (
     TaskRepository,
     provide_tag_repository,
     provide_task_repository,
 )
+from todoshnik.services import TaskService, provide_task_service
 
 type LitestarRequest = Request[None, None, State]
 
@@ -29,8 +30,10 @@ class TaskController(Controller):
     path = '/task'
     dependencies = {  # noqa: RUF012
         'task_repository': Provide(provide_task_repository),
+        'task_service': Provide(provide_task_service),
         'tag_repository': Provide(provide_tag_repository),
     }
+    tags = ('Task',)
 
     @get('/create_dialog')
     async def get_task_dialog(
@@ -42,17 +45,17 @@ class TaskController(Controller):
             re_swap='beforeend',
         )
 
-    @post('', dto=dto.TaskDTO)
+    @post('', dto=schemas.TaskDTO)
     async def create_task(
         self,
-        task_repository: TaskRepository,
+        task_service: TaskService,
         data: Annotated[
-            models.Task,
+            schemas.Task,
             Body(media_type=RequestEncodingType.URL_ENCODED),
         ],
         request: LitestarRequest,
     ) -> HTMXTemplate:
-        task = await task_repository.add(data=data, auto_commit=True)
+        task = await task_service.create(data=data, auto_commit=True)
         request.logger.info('Task created', task_id=task.id)
         return HTMXTemplate(
             template_name='components/task_item.html',

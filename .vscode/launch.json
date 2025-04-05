@@ -11,7 +11,7 @@
       "module": "litestar",
       "args": [
         "--app",
-        "todoshnik.main:app",
+        "todoshnik:app",
         "run",
         "-rd", "--host", "0.0.0.0"
       ]

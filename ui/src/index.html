@@ -17,6 +17,25 @@
       src="https://unpkg.com/hyperscript.org@{{ hyperscript_version }}"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/hyperscript">
+      on htmx:confirm(detail)
+      if not detail.question exit
+      else
+      halt the event
+      then js(detail)
+      Swal.fire({
+        title: "Подтвердить?",
+        text: detail.question,
+        showCancelButton: true,
+        confirmButtonText: "Хорошо",
+        cancelButtonText: "Отказать",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          detail.issueRequest(true);
+        }
+      })
+    </script>
     <title>Тудушникъ</title>
   </head>
   <body>

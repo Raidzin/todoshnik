@@ -10,21 +10,27 @@ from todoshnik.database.repository import (
     provide_tag_repository,
     provide_task_repository,
 )
+from todoshnik.services import TaskService, provide_task_service
 
 
 class PagesController(Controller):
     dependencies = {  # noqa: RUF012
         'task_repository': Provide(provide_task_repository),
+        'task_service': Provide(provide_task_service),
         'tag_repository': Provide(provide_tag_repository),
     }
+    tags = ('Pages',)
 
     @get('', name='Главная')
     async def index_page(self, task_repository: TaskRepository) -> Template:
         return HTMXTemplate(template_name='pages/index.html')
 
     @get('/tasks', name='Задачи')
-    async def tasks_page(self, task_repository: TaskRepository) -> Template:
-        tasks = await task_repository.list(
+    async def tasks_page(
+        self,
+        task_service: TaskService,
+    ) -> Template:
+        tasks = await task_service.list(
             models.Task.is_done == False,  # noqa: E712
         )
         return HTMXTemplate(
