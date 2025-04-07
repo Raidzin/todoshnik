@@ -53,3 +53,22 @@ textarea {
     resize: none;
   }
 }
+
+.swal2-backdrop-show {
+  @apply bg-black/50 backdrop-blur-md;
+}
+
+.swal2-confirm {
+  @apply bg-action cursor-pointer rounded-xl p-2 text-base text-white uppercase shadow-xs shadow-black transition-colors duration-300;
+  @apply hover:bg-accent hover:shadow-md;
+}
+
+.swal2-cancel {
+  @apply text-action cursor-pointer rounded-xl bg-transparent p-2 text-base uppercase transition-colors duration-300;
+  @apply hover:bg-black/10;
+}
+
+.swal2-popup {
+  @apply bg-light dark:bg-dark min-w-[30vw] rounded-xl shadow-xl shadow-black/50 dark:shadow-white/50;
+  @apply text-black dark:text-white;
+}

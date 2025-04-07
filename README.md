@@ -9,7 +9,15 @@ ToDo service with Litestar, TailwindCSS, HTMX and Hyperscript
 - uv >= 0.6
 - node >= 22
 
-### Build tailwindcss
+### Start litestar
+
+```shell
+uv run litestar --app todoshnik:app run
+```
+
+then open http://localhost:8000/
+
+### Re Build tailwindcss
 
 ```shell
 cd ui
@@ -22,11 +30,3 @@ npm install
 ```shell
 npm run build
 ```
-
-### Start litestar
-
-```shell
-uv run litestar --app todoshnik:app run
-```
-
-then open http://localhost:8000/
