@@ -1,7 +1,7 @@
 from litestar import Controller, get
 from litestar.di import Provide
 from litestar.plugins.htmx import HTMXTemplate
-from litestar.response import Template
+from litestar.response import Redirect, Template
 
 from todoshnik.database import models
 from todoshnik.database.repository import (
@@ -22,8 +22,8 @@ class PagesController(Controller):
     tags = ('Pages',)
 
     @get('', name='Главная')
-    async def index_page(self, task_repository: TaskRepository) -> Template:
-        return HTMXTemplate(template_name='pages/index.html')
+    async def index_page(self, task_repository: TaskRepository) -> Redirect:
+        return Redirect(path='/tasks')
 
     @get('/tasks', name='Задачи')
     async def tasks_page(
